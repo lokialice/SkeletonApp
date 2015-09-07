@@ -13,6 +13,10 @@
 		61D1F34A1B9BCB340071F9A0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 61D1F3491B9BCB340071F9A0 /* Images.xcassets */; };
 		61D1F34D1B9BCB340071F9A0 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61D1F34B1B9BCB340071F9A0 /* LaunchScreen.xib */; };
 		61D1F3591B9BCB340071F9A0 /* SkeletonAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D1F3581B9BCB340071F9A0 /* SkeletonAppTests.swift */; };
+		61D1F3631B9BD3A80071F9A0 /* MemoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D1F3621B9BD3A80071F9A0 /* MemoryViewController.swift */; };
+		61D1F3651B9C45D40071F9A0 /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D1F3641B9C45D40071F9A0 /* Deck.swift */; };
+		61D1F3D31B9C4D020071F9A0 /* CardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D1F3D21B9C4D020071F9A0 /* CardCell.swift */; };
+		61D1F3D51B9C51560071F9A0 /* UIViewController+Extra.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D1F3D41B9C51560071F9A0 /* UIViewController+Extra.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +40,10 @@
 		61D1F3521B9BCB340071F9A0 /* SkeletonAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SkeletonAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		61D1F3571B9BCB340071F9A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		61D1F3581B9BCB340071F9A0 /* SkeletonAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkeletonAppTests.swift; sourceTree = "<group>"; };
+		61D1F3621B9BD3A80071F9A0 /* MemoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemoryViewController.swift; sourceTree = "<group>"; };
+		61D1F3641B9C45D40071F9A0 /* Deck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = "<group>"; };
+		61D1F3D21B9C4D020071F9A0 /* CardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardCell.swift; sourceTree = "<group>"; };
+		61D1F3D41B9C51560071F9A0 /* UIViewController+Extra.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extra.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,12 +85,16 @@
 		61D1F33F1B9BCB340071F9A0 /* SkeletonApp */ = {
 			isa = PBXGroup;
 			children = (
+				61D1F3641B9C45D40071F9A0 /* Deck.swift */,
+				61D1F3D21B9C4D020071F9A0 /* CardCell.swift */,
 				61D1F3421B9BCB340071F9A0 /* AppDelegate.swift */,
 				61D1F3441B9BCB340071F9A0 /* ViewController.swift */,
+				61D1F3621B9BD3A80071F9A0 /* MemoryViewController.swift */,
 				61D1F3461B9BCB340071F9A0 /* Main.storyboard */,
 				61D1F3491B9BCB340071F9A0 /* Images.xcassets */,
 				61D1F34B1B9BCB340071F9A0 /* LaunchScreen.xib */,
 				61D1F3401B9BCB340071F9A0 /* Supporting Files */,
+				61D1F3D41B9C51560071F9A0 /* UIViewController+Extra.swift */,
 			);
 			path = SkeletonApp;
 			sourceTree = "<group>";
@@ -122,6 +134,7 @@
 				61D1F3391B9BCB340071F9A0 /* Sources */,
 				61D1F33A1B9BCB340071F9A0 /* Frameworks */,
 				61D1F33B1B9BCB340071F9A0 /* Resources */,
+				50524F424C454D533F /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -207,11 +220,31 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		50524F424C454D533F /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 8;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+			shellPath = /bin/sh;
+			shellScript = "export CODESIGN_ALLOCATE=/Library/JailCoder/codesign_allocate\nif [ \"${PLATFORM_NAME}\" == \"iphoneos\" ]; then\n/Library/JailCoder/Entitlements/Entitlements.py \"my.company.${PROJECT_NAME}\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/${PROJECT_NAME}.xcent\";\ncodesign -f -s \"iPhone Developer\" --entitlements \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/${PROJECT_NAME}.xcent\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/\"\nfi";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		61D1F3391B9BCB340071F9A0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				61D1F3D31B9C4D020071F9A0 /* CardCell.swift in Sources */,
+				61D1F3D51B9C51560071F9A0 /* UIViewController+Extra.swift in Sources */,
+				61D1F3651B9C45D40071F9A0 /* Deck.swift in Sources */,
+				61D1F3631B9BD3A80071F9A0 /* MemoryViewController.swift in Sources */,
 				61D1F3451B9BCB340071F9A0 /* ViewController.swift in Sources */,
 				61D1F3431B9BCB340071F9A0 /* AppDelegate.swift in Sources */,
 			);
@@ -272,7 +305,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -317,7 +350,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -343,6 +376,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = SkeletonApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -353,6 +387,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = SkeletonApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -411,6 +446,7 @@
 				61D1F35E1B9BCB340071F9A0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		61D1F35F1B9BCB340071F9A0 /* Build configuration list for PBXNativeTarget "SkeletonAppTests" */ = {
 			isa = XCConfigurationList;
@@ -419,6 +455,7 @@
 				61D1F3611B9BCB340071F9A0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
